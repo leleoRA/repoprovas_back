@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm";
 
 import Tests from "./Tests";
+import Subjects from "./Subjects";
 
 @Entity('teachers')
 export default class Teachers{
@@ -12,4 +13,7 @@ export default class Teachers{
 
     @OneToMany(() => Tests, tests => tests.teachers)
     tests: Tests[];
+
+    @ManyToMany(() => Subjects, subjects => subjects.teachers)
+    subjects: Subjects
 }

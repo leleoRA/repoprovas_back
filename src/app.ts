@@ -4,13 +4,14 @@ import cors from "cors";
 
 import connectDatabase from "./database";
 
+import * as testsController from "./controllers/testsController"
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/test", (req, res) => {
-  res.send("rodando")
-})
+app.get("/subjects", testsController.allSubjectsAndTeachers)
+app.post("/addTest", testsController.addTest)
 
 export async function init () {
   await connectDatabase();
